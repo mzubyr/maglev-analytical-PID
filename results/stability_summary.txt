@@ -1,0 +1,14 @@
+Plant: G(s) = -560.6 / (s^3 + 40 s^2 -392.4 s -15696)
+Open-loop eigenvalues of A: [ 19.809 -19.809 -40.   ]
+Controllability: rank 3 of 3, det = -6.285e+06
+
+PD  (cubic):  d > 0.70,  p > 28.0,  p < 40 d
+PID (quartic): the same, and  i < (40 d - p)(560.6 p - 15696) / 1600
+
+Routh-Hurwitz vs numerical roots on 20000 random gain sets: PD agree 20000, PID agree 20000
+
+Examples (Kp, Kd, Ki):
+  (-60, -2, -50)  Routh: True   roots: True
+  (-60, -2, -300)  Routh: False  roots: False
+  (-20, -2, -10)  Routh: False  roots: False
+  (20, 1, 5)  Routh: False  roots: False

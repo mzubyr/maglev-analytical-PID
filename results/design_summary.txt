@@ -1,0 +1,8 @@
+Desired polynomial: [1.000e+00 4.000e+01 7.320e+02 7.232e+03 2.912e+04]
+Gains: Kp = -40.90, Kd = -2.006, Ki = -51.95
+Closed-loop roots: [ -8.+12.j  -8.-12.j -14. +0.j -10. +0.j]
+Inside the Routh-Hurwitz region: True
+Standard PID  step response: overshoot 268.4 %, settling (2 %) 0.80 s
+I-PD          step response: overshoot 0.0 %, settling (2 %) 0.47 s
+1 mm step, I-PD: final 1.000000 mm, peak |voltage deviation| 0.03 V (equilibrium voltage is 1.4 V; no saturation modelled)
+Outside the region (-20.0, -2.0, -10.0): roots [-22.5 +21.02j -22.5 -21.02j   3.11 +0.j     1.9  +0.j  ]
