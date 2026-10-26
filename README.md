@@ -11,8 +11,8 @@ compared directly.
 | File | Purpose |
 |---|---|
 | `derivation.md` | Typed step-by-step derivation (model, linearisation, G(s), Routh-Hurwitz, pole placement) |
-| `plant.py` | Model, transfer function, closed-loop polynomials, Hurwitz checks |
-| `stability_analysis.py` | Prints G(s) and the stability conditions; checks Routh-Hurwitz against roots on 20000 random gain sets; draws the PD region |
+| `plant.py` | Model as a state-space system (`ct.ss`), transfer function (`ct.ss2tf`), PID, PD and I-PD closed loops (`ct.feedback`), Routh-Hurwitz checks, pole placement |
+| `stability_analysis.py` | Prints G(s) and the stability conditions; compares Routh-Hurwitz with the closed-loop poles on thousands of random gain sets (5000 by default, see `N_TRIALS`); draws the PD region |
 | `design_and_simulate.py` | Pole-placement design, step responses (standard PID vs I-PD), time-domain simulation |
 | `results/` | Figures and text summaries produced by the scripts |
 | `docs/` | Scanned hand-written derivation pages |
@@ -32,7 +32,7 @@ With p = -Kp, d = -Kd, i = -Ki:
 - PD: d > 0.70, p > 28.0, p < 40 d (40 = R/L)
 - PID: the same, and i < (560.6 p - 15696)(40 d - p) / 1600
 
-The conditions agree with numerical roots on 20000 random gain sets (PD and PID).
+The conditions agree with the closed-loop poles computed by the library on 5000 random gain sets (PD and PID); the number is set by `N_TRIALS` in `stability_analysis.py`.
 
 Design by pole placement (poles -8 +/- 12j, -10, -14): **Kp = -40.90, Kd = -2.006, Ki = -51.95**.
 
@@ -45,6 +45,11 @@ For a 1 mm step with the I-PD controller the peak voltage deviation is 0.03 V (e
 voltage 1.4 V).
 
 Figures: `results/pd_region.png`, `results/pid_i_limit.png`, `results/step_response.png`.
+
+## Requirements
+
+The Python Control Systems Library (`control`), NumPy, SciPy and Matplotlib (`pip install -r requirements.txt`).
+The model, transfer function, closed loops, poles and simulations all use the control library.
 
 ## Run
 
