@@ -122,7 +122,7 @@ Matching coefficients:
 d = 2.006 > 0.70, p = 40.90 > 27.998, i = 51.9 > 0, p < 40 d = 80.2, and
 i < (80.2 - 40.9)(560.6 x 40.9 - 15696)/1600 = 177.6. Also b1 = 551.2 > 0 and c1 = 7232 - 40 x 29120/551.2 = 5119 > 0.
 
-`stability_analysis.py` compares these conditions with numerical roots on 20000 random gain sets (all agree), and
+`stability_analysis.py` compares these conditions with the closed-loop poles computed by the control library on thousands of random gain sets (5000 by default; all agree), and
 `design_and_simulate.py` simulates the design.
 
 ## 11. Standard PID vs I-PD
@@ -131,14 +131,3 @@ With the standard PID on the error, the reference-to-output transfer function co
 the step response overshoots by 268 % (0.80 s settling). Putting Kp and Kd on the measurement and only the integral
 on the error (I-PD) gives the same characteristic polynomial, so the same poles and the same stability region,
 but no zeros: overshoot 0 %, settling 0.47 s.
-
-## Corrections made to the first hand-written draft
-
-1. A(2,1) is 392.4, not 3924.
-2. R = 2 ohm (not 1 ohm), consistent with u0 = 1.4 V and A(3,3) = -40.
-3. B = [0, 0, 20]^T = 1/L (not [0, 0, -40]); the plant gain is -560.6, not +1121.2.
-4. Cofactor signs: C12 = +392.4 (s + 40) and C32 = -28.03 s; only C31 is needed for G(s).
-5. The characteristic equation has a plus sign: s den + N (...) = 0.
-6. The stability conditions use the true coefficients (the gains are negative); for a quartic, positive coefficients
-   are necessary but not sufficient.
-7. The controllability determinant is -6.28e6.
